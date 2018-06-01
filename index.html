@@ -63,12 +63,13 @@
         newLink = $('<a>');
         newLink.text(layer.feature.properties.NAME)
                 .attr('class','m-1')
-                .attr('href','#');
+                .attr('href','#')
+                .attr('lat', layer.feature.geometry.coordinates[1])
+                .attr('long', layer.feature.geometry.coordinates[0]);
         newUL = $('<li>');
         newUL.append(newLink);    
        $('#button-container').append(newUL);
 
-       console.log(layer.feature.properties.NAME);
        console.log(layer.feature);
     }
 
@@ -77,8 +78,8 @@
     onEachFeature: onEachFeature
     }).addTo(mymap);
 
-    parks.bindPopup(function (layer) {
-        return L.Util.template('<p><strong>{NAME}</strong></p><p>{ALL_AMENITIES}</p>', layer.feature.properties);
+    var popups = parks.bindPopup(function (layer) {
+        return L.Util.template('<h4><strong>{NAME}</strong></h4><p>{ALL_AMENITIES}</p>', layer.feature.properties);
     });
 
     searchControl.on("results", function(data) {
@@ -106,12 +107,14 @@ function filter() {
     }
 }
 
-// Create jquery onclick event when park link is clicked, let's zoom to the marker; open popup; display stats to the right?
-// lat = layer.feature.geometry.coordinates[1]
-// long = layer.feature.geometry.coordinates[0]
-// We will want to save this as attributes in the oneach function
-// On click, zoom to lat long (this.long, this.lat)
+$('#button-container').on('click','a', function(){
+    mymap.setView([$(this).attr('lat'),$(this).attr('long')],19);
+    // add your table populations here
+})
 
+
+// Make empty table for yes/no - conditional coloring if yes or no
+//In the onclick event, make a fading popup that says you can click on the marker for more information: http://jsfiddle.net/3XwZv/71/
 
 
 </script>
