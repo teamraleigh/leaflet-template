@@ -13,13 +13,33 @@
     crossorigin=""></script>
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>[Leaflet Template]</title>
+    <script src="https://unpkg.com/esri-leaflet@2.1.4/dist/esri-leaflet.js"
+    integrity="sha512-m+BZ3OSlzGdYLqUBZt3u6eA0sH+Txdmq7cqA1u8/B2aTXviGMMLOfrKyiIW7181jbzZAY0u+3jWoiL61iLcTKQ=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.9/dist/esri-leaflet-geocoder.css">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.8"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="parks.js"></script>
+    <title>[Park Experiences]</title>
 </head>
 <body>
-    <div id="title"> <h1>Leaflet Template Map</h1></div>
+    <div id="title"> <h1>Raleigh Park Experiences</h1></div>
     <div id="mapid"></div>
 
 <script>
+    var myIcon = L.icon({
+    iconUrl: 'geocode.png',
+    // iconSize: [38, 95],
+    // iconAnchor: [22, 94],
+    // popupAnchor: [-3, -76],
+    // shadowUrl: 'my-icon-shadow.png',
+    // shadowSize: [68, 95],
+    // shadowAnchor: [22, 94]
+    });
+
     var mymap = L.map('mapid').setView([35.7877435, -78.644257], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/rmerino/cjg6xerpg1eux2sppksbbhp7a/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm1lcmlubyIsImEiOiJjamZpOHFzaGQwM2p5MzNtcXI5c251a2dlIn0.XRFhUVODMYz4Js_gIkO31g', {
@@ -27,7 +47,30 @@
     maxZoom: 23,
     id: 'mapbox.streets',
     accessToken: 'your.mapbox.access.token'
-}).addTo(mymap);
+    }).addTo(mymap);
+
+    var searchControl = L.esri.Geocoding.geosearch().addTo(mymap);
+
+    var results = L.layerGroup().addTo(mymap);
+
+    var parks = L.esri.featureLayer({
+    url:"https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/ParksByExperiences/FeatureServer/0?token=dblfZriEdYILXMQiN-6EVMFXYNDLRddsqF-nas5Rzb_UquTD8rN1EUbckZZf4rlapOIqDeIViSKD2ORElxD_2UCQXdButaEXGiGvUjkZiU3-mXfAQuvhJrNk8peoB_CYs3U-S0LZeNGF8SDwqTPp9LxiX3SYlb_o7CXxjSdvu6hfHHjET24bmuCbI3YHPd59uEMBnFcopiEKfI3TCaFQ1ZGoQACjlkSl7srQcASKUrqxoNiMA6lLv64NFTxA6rGUzM2JcSt4UidGjKN_SdZrww.."
+    }).addTo(mymap);
+
+    parks.bindPopup(function (layer) {
+        return L.Util.template('<p><strong>{NAME}</strong></p><p>{ALL_AMENITIES}</p>', layer.feature.properties);
+    });
+
+    searchControl.on("results", function(data) {
+        results.clearLayers();
+        for (var i = data.results.length - 1; i >= 0; i--) {
+            results.addLayer(L.marker(data.results[i].latlng,{icon: myIcon}));
+        }
+    });
+
+console.log(parkData);
+
+
 
 
 </script>
