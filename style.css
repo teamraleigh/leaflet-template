@@ -1,7 +1,14 @@
-/* #mapid {
-    height: 100%;
-    width: 100%;
-} */
+html {
+    overflow: hidden;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 10px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+    background: royalblue;
+}
 
 body {
     padding: 0;
@@ -9,7 +16,7 @@ body {
 }
 html, body, #mapid {
     height: 100%;
-    width: 100vw;
+    width: 100%;
 }
 
 #title {
@@ -18,8 +25,8 @@ html, body, #mapid {
     background-color: 	rgba(0, 0, 0, 0.65);
     border: white 2pt solid;
     box-shadow: 10px 10px 5px grey;
-    font-family: 'Black Han Sans', sans-serif;
-    text-shadow: 1px 1px 2px black, 0 0 25px royalblue, 0 0 5px black;
+    /* font-family: 'Black Han Sans', sans-serif; */
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
     letter-spacing: 3px;
     color: white;
     text-align: center;
@@ -30,5 +37,40 @@ html, body, #mapid {
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 9999;
-    
+    border-radius: 25px;
+}
+
+#button-container {
+    position: fixed;
+    bottom: 60px;
+    left: 20px;
+    height: 25%;
+    width: 350px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.65);
+    overflow-y: auto;
+    border: white solid 2pt;
+    padding: 0;
+    border-radius: 25px;
+}
+
+#filter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    overflow-y: auto;
+    width: 350px;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: yellow;
+}
+
+li {
+    list-style-type: none;
 }
