@@ -38,6 +38,69 @@
         <div class="col-xs-4"><input type="text" id="filter" onkeyup="filter()" placeholder="Start typing a park to filter list..." title="Enter Park Name" class="form-control"></div>
         <ul id="button-container" class="justify-content-center text-center"></ul>
         </div>
+
+    <div class="container table-container text-center">
+        <h3 id="selected-park">(Select a park from the list) </h3>
+            <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Active Adult Center</td>
+                        <td>Dog Park</td>
+                        <td>Library</td>
+                        <td>Neighborhood Center</td>
+                      </tr>
+                      <tr>
+                        <td>Arts Center</td>
+                        <td>Environmental Center</td>
+                        <td>Mini Train</td>
+                        <td>Sand Volleyball</td>
+                      </tr>
+                      <tr>
+                        <td>Ballfield</td>
+                        <td>Fishing Access</td>
+                        <td>Multiuse Field</td>
+                        <td>Skate Park</td>
+                      </tr>
+                      <tr>
+                        <td>Boat Rental</td>
+                        <td>Greenway Access</td>
+                        <td>Museum</td>
+                        <td>Teen Center</td>
+                      </tr>
+                      <tr>
+                        <td>Bocce</td>
+                        <td>Gym</td>
+                        <td>Outdoor Basketball</td>
+                        <td>Tennis Court</td>
+                      </tr>
+                      <tr>
+                        <td>BMX Track</td>
+                        <td>Handball</td>
+                        <td>Picnic Shelter</td>
+                        <td>Theater</td>
+                      </tr>
+                      <tr>
+                        <td>Canoe Launch</td>
+                        <td>Horseshoe Pit</td>
+                        <td>Playground</td>
+                        <td>Track</td>
+                      </tr>
+                      <tr>
+                        <td>Carousel</td>
+                        <td>Inline Hockey</td>
+                        <td>Pool</td>
+                        <td>Walking Trail</td>
+                      </tr>
+                      <tr>
+                        <td>Disc Golf</td>
+                        <td>Kiddie Boats</td>
+                        <td>Recreation Center</td>
+                        <td>Unique Space</td>
+                      </tr>
+                    </tbody>
+                  </table>
+    </div>    
+            
 <script>
     var myIcon = L.icon({
     iconUrl: 'geocode.png'
@@ -64,6 +127,7 @@
         newLink.text(layer.feature.properties.NAME)
                 .attr('class','m-1')
                 .attr('href','#')
+                .attr('name',layer.feature.properties.NAME)
                 .attr('lat', layer.feature.geometry.coordinates[1])
                 .attr('long', layer.feature.geometry.coordinates[0]);
         newUL = $('<li>');
@@ -109,6 +173,7 @@ function filter() {
 
 $('#button-container').on('click','a', function(){
     mymap.setView([$(this).attr('lat'),$(this).attr('long')],19);
+    $('#selected-park').text($(this).attr('name'));
     // add your table populations here
 })
 

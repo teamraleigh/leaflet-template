@@ -22,7 +22,7 @@ html, body, #mapid {
 #title {
     box-sizing: border-box;
     position: fixed;
-    background-color: 	rgba(0, 0, 0, 0.65);
+    background-color: 	rgba(0, 0, 0, 0.8);
     border: white 2pt solid;
     box-shadow: 10px 10px 5px grey;
     font-family: 'Bevan', cursive;
@@ -46,8 +46,8 @@ html, body, #mapid {
     left: 20px;
     height: 40%;
     width: 350px;
-    z-index: 999;
-    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     border: white solid 2pt;
     padding: 0;
@@ -74,3 +74,17 @@ a:hover {
 li {
     list-style-type: none;
 }
+
+.table-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: white solid 2pt;
+    border-radius: 25px;
+    /* height: 100%; */
+    width: 650px;
+}
+
