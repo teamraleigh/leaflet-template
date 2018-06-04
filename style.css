@@ -81,10 +81,13 @@ li {
     right: 20px;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    color: rgb(150, 150, 150);
     border: white solid 2pt;
     border-radius: 25px;
     /* height: 100%; */
     width: 650px;
 }
 
+h3 {
+    color: white;
+}

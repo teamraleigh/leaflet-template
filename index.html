@@ -44,58 +44,58 @@
             <table class="table">
                     <tbody>
                       <tr>
-                        <td>Active Adult Center</td>
-                        <td>Dog Park</td>
-                        <td>Library</td>
-                        <td>Neighborhood Center</td>
+                        <td id="active-adult">Active Adult Center</td>
+                        <td id="dog-park">Dog Park</td>
+                        <td id="library">Library</td>
+                        <td id="neighborhood-center">Neighborhood Center</td>
                       </tr>
                       <tr>
-                        <td>Arts Center</td>
-                        <td>Environmental Center</td>
-                        <td>Mini Train</td>
-                        <td>Sand Volleyball</td>
+                        <td id="arts-center">Arts Center</td>
+                        <td id="environmental-center">Environmental Center</td>
+                        <td id="train">Mini Train</td>
+                        <td id="volleyball">Sand Volleyball</td>
                       </tr>
                       <tr>
-                        <td>Ballfield</td>
-                        <td>Fishing Access</td>
-                        <td>Multiuse Field</td>
-                        <td>Skate Park</td>
+                        <td id="ballfield">Ballfield</td>
+                        <td id="fishing">Fishing Access</td>
+                        <td id="multiuse-field">Multiuse Field</td>
+                        <td id="skate-park">Skate Park</td>
                       </tr>
                       <tr>
-                        <td>Boat Rental</td>
-                        <td>Greenway Access</td>
-                        <td>Museum</td>
-                        <td>Teen Center</td>
+                        <td id="boat-rental">Boat Rental</td>
+                        <td id="greenway-access">Greenway Access</td>
+                        <td id="museum">Museum</td>
+                        <td id="teen-center">Teen Center</td>
                       </tr>
                       <tr>
-                        <td>Bocce</td>
-                        <td>Gym</td>
-                        <td>Outdoor Basketball</td>
-                        <td>Tennis Court</td>
+                        <td id="bocce">Bocce</td>
+                        <td id="gym">Gym</td>
+                        <td id="basketball">Outdoor Basketball</td>
+                        <td id="tennis">Tennis Court</td>
                       </tr>
                       <tr>
-                        <td>BMX Track</td>
-                        <td>Handball</td>
-                        <td>Picnic Shelter</td>
-                        <td>Theater</td>
+                        <td id="bmx-track">BMX Track</td>
+                        <td id="handball">Handball</td>
+                        <td id="picnic-shelter">Picnic Shelter</td>
+                        <td id="theater">Theater</td>
                       </tr>
                       <tr>
-                        <td>Canoe Launch</td>
-                        <td>Horseshoe Pit</td>
-                        <td>Playground</td>
-                        <td>Track</td>
+                        <td id="canoe">Canoe Launch</td>
+                        <td id="horseshoe">Horseshoe Pit</td>
+                        <td id="playground">Playground</td>
+                        <td id="track">Track</td>
                       </tr>
                       <tr>
-                        <td>Carousel</td>
-                        <td>Inline Hockey</td>
-                        <td>Pool</td>
-                        <td>Walking Trail</td>
+                        <td id="carousel">Carousel</td>
+                        <td id="hockey">Inline Hockey</td>
+                        <td id="pool">Pool</td>
+                        <td id="walking-trail">Walking Trail</td>
                       </tr>
                       <tr>
-                        <td>Disc Golf</td>
-                        <td>Kiddie Boats</td>
-                        <td>Recreation Center</td>
-                        <td>Unique Space</td>
+                        <td id="disc-golf">Disc Golf</td>
+                        <td id="kiddie-boat">Kiddie Boats</td>
+                        <td id="recreation-center">Recreation Center</td>
+                        <td id="unique-space">Unique Space</td>
                       </tr>
                     </tbody>
                   </table>
@@ -128,13 +128,49 @@
                 .attr('class','m-1')
                 .attr('href','#')
                 .attr('name',layer.feature.properties.NAME)
+                .attr('active-adult', layer.feature.properties.ACTIVE_ADULT)
+                .attr('dog-park', layer.feature.properties.DOGPARK)
+                .attr('library', layer.feature.properties.LIBRARY)
+                .attr('neighborhood-center', layer.feature.properties.NEIGHBORHOODCENTER)
+                .attr('arts-center', layer.feature.properties.ARTSCENTER)
+                .attr('environmental-center', layer.feature.properties.ENVCTR)
+                .attr('train', layer.feature.properties.AMUSEMENTTRAIN)
+                .attr('volleyball', layer.feature.properties.SANDVOLLEYBALL)
+                .attr('ballfield', layer.feature.properties.BALLFIELDS)
+                .attr('fishing', layer.feature.properties.FISHING)
+                .attr('multiuse-field', layer.feature.properties.MULTIPURPOSEFIELD)
+                .attr('skate-park', layer.feature.properties.SKATEPARK)
+                .attr('boat-rental', layer.feature.properties.BOATRENTALS)
+                .attr('greenway-access', layer.feature.properties.GREENWAYACCESS)
+                .attr('museum', layer.feature.properties.MUSEUM)
+                .attr('teen-center', layer.feature.properties.TEENCENTER)
+                .attr('bocce', layer.feature.properties.BOCCE)
+                .attr('gym', layer.feature.properties.GYM)
+                .attr('basketball', layer.feature.properties.OUTDOORBASKETBALL)
+                .attr('tennis', layer.feature.properties.TENNISCOURT)
+                .attr('bmx-track', layer.feature.properties.BMXTRACK)
+                .attr('handball', layer.feature.properties.HANDBALL)
+                .attr('picnic-shelter', layer.feature.properties.PICNICSHELTER)
+                .attr('theater', layer.feature.properties.THEATER)
+                .attr('canoe', layer.feature.properties.CANOE)
+                .attr('horseshoe', layer.feature.properties.HORSESHOE)
+                .attr('playground', layer.feature.properties.PLAYGROUND)
+                .attr('track', layer.feature.properties.TRACK)
+                .attr('carousel', layer.feature.properties.CAROUSEL)
+                .attr('hockey', layer.feature.properties.INLINESKATING)
+                .attr('pool', layer.feature.properties.POOL)
+                .attr('walking-trail', layer.feature.properties.WALKINGTRAILS)
+                .attr('disc-golf', layer.feature.properties.DISCGOLF)
+                .attr('kiddie-boat', layer.feature.properties.BOATRIDE)
+                .attr('recreation-center', layer.feature.properties.COMMUNITYCENTER)
+                .attr('unique-space', layer.feature.properties.UNIQUESP)
                 .attr('lat', layer.feature.geometry.coordinates[1])
                 .attr('long', layer.feature.geometry.coordinates[0]);
         newUL = $('<li>');
         newUL.append(newLink);    
        $('#button-container').append(newUL);
 
-       console.log(layer.feature);
+    //    console.log(layer.feature);
     }
 
     var parks = L.esri.featureLayer({
@@ -172,10 +208,28 @@ function filter() {
 }
 
 $('#button-container').on('click','a', function(){
+
     mymap.setView([$(this).attr('lat'),$(this).attr('long')],19);
+
     $('#selected-park').text($(this).attr('name'));
-    // add your table populations here
+
+
+    $(this).each(function() {
+        $.each(this.attributes, function(i, attrib){
+        let name = attrib.name;
+        let value = attrib.value;
+        console.log(name + " | " + value);
+
+        if (value === 'Yes') {
+            nameID = "#" + name;
+            $(nameID).css("background-color", "green").css("color", "white");
+        }
+        });
+    });
+
+   
 })
+
 
 
 // Make empty table for yes/no - conditional coloring if yes or no
