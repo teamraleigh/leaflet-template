@@ -24,7 +24,7 @@ html, body, #mapid {
     position: fixed;
     background-color: 	rgba(0, 0, 0, 0.8);
     border: white 2pt solid;
-    box-shadow: 10px 10px 5px grey;
+    box-shadow: 5px 5px 2px slategray;
     font-family: 'Bevan', cursive;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
     letter-spacing: 3px;
@@ -91,3 +91,39 @@ li {
 h3 {
     color: white;
 }
+
+@keyframes bounceInDown {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -3000px, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: translate3d(0, 25px, 0);
+    }
+  
+    75% {
+      transform: translate3d(0, -10px, 0);
+    }
+  
+    90% {
+      transform: translate3d(0, 5px, 0);
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  .bounceInDown {
+    animation-name: bounceInDown;
+  }

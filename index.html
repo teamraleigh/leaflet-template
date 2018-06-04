@@ -102,16 +102,22 @@
     </div>    
             
 <script>
-    var myIcon = L.icon({
-    iconUrl: 'geocode.png'
+
+    const myIcon = L.icon({
+        iconUrl: 'geocode.png'
     });
+
+    const parkMarker = L.icon({
+        iconUrl: 'marker.png'
+    });
+    
 
     var mymap = L.map('mapid').setView([35.7877435, -78.644257], 13);
    
          
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/rmerino/cjg6xerpg1eux2sppksbbhp7a/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm1lcmlubyIsImEiOiJjamZpOHFzaGQwM2p5MzNtcXI5c251a2dlIn0.XRFhUVODMYz4Js_gIkO31g', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    L.tileLayer('https://api.mapbox.com/styles/v1/rmerino/cji0dx4o40cn02rr0p17ndlbd/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm1lcmlubyIsImEiOiJjamZpOHFzaGQwM2p5MzNtcXI5c251a2dlIn0.XRFhUVODMYz4Js_gIkO31g', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>, Developed by <a href="https://github.com/merinogeospatial">Richard Merino</a> ',
     maxZoom: 23,
     id: 'mapbox.streets',
     accessToken: 'your.mapbox.access.token'
@@ -175,11 +181,16 @@
 
     var parks = L.esri.featureLayer({
     url:"https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/ParksByExperiences/FeatureServer/0?token=dblfZriEdYILXMQiN-6EVMFXYNDLRddsqF-nas5Rzb_UquTD8rN1EUbckZZf4rlapOIqDeIViSKD2ORElxD_2UCQXdButaEXGiGvUjkZiU3-mXfAQuvhJrNk8peoB_CYs3U-S0LZeNGF8SDwqTPp9LxiX3SYlb_o7CXxjSdvu6hfHHjET24bmuCbI3YHPd59uEMBnFcopiEKfI3TCaFQ1ZGoQACjlkSl7srQcASKUrqxoNiMA6lLv64NFTxA6rGUzM2JcSt4UidGjKN_SdZrww..",
-    onEachFeature: onEachFeature
+    onEachFeature: onEachFeature,
+    pointToLayer: function (geojson, latlng) {
+      return L.marker(latlng, {
+        icon: parkMarker
+      });
+    },
     }).addTo(mymap);
 
     var popups = parks.bindPopup(function (layer) {
-        return L.Util.template('<h4><strong>{NAME}</strong></h4><p>{ALL_AMENITIES}</p>', layer.feature.properties);
+        return L.Util.template('<h4><strong>{NAME}</strong></h4><p>Amenities at location: {ALL_AMENITIES}</p><p><strong>{ADDRESS}</p><p><a href="{URL}" target="_blank">Website</a></p>', layer.feature.properties);
     });
 
     searchControl.on("results", function(data) {
@@ -213,7 +224,6 @@ $('#button-container').on('click','a', function(){
 
     $('#selected-park').text($(this).attr('name'));
 
-
     $(this).each(function() {
         $.each(this.attributes, function(i, attrib){
         let name = attrib.name;
@@ -228,8 +238,8 @@ $('#button-container').on('click','a', function(){
         });
     });
 
-   
 })
+
 
 
 
